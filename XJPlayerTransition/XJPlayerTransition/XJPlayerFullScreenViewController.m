@@ -15,12 +15,17 @@
 
 @implementation XJPlayerFullScreenViewController
 
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor purpleColor];
-    [self.view addSubview:self.playerContainer];
-    self.playerContainer.frame = self.view.bounds;
+    //[self.view addSubview:self.playerContainer];
+    //self.playerContainer.frame = self.view.bounds;
 }
 
 - (XJPlayerTransitioningDelegate *)transition
@@ -28,12 +33,12 @@
     if (!_transition)
     {
         _transition = [[XJPlayerTransitioningDelegate alloc] init];
-        _transition.targetView = self.playerContainer;
+        _transition.targetView = self.view;
     }
 
     return _transition;
 }
-
+/*
 - (UIView *)playerContainer
 {
     if (!_playerContainer) {
@@ -42,12 +47,9 @@
     }
     return _playerContainer;
 }
-
+*/
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
-    UIViewController *vc = [[UIViewController alloc] init];
-    vc.transitioningDelegate = vc.transitioningDelegate;
-
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		903B8BAC21F74C5A00EAB837 /* VideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 903B8BAB21F74C5A00EAB837 /* VideoTableViewCell.m */; };
 		90D2F50D21F6BDB4000594FA /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F50C21F6BDB4000594FA /* AppDelegate.m */; };
 		90D2F51021F6BDB4000594FA /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F50F21F6BDB4000594FA /* ViewController.m */; };
 		90D2F51321F6BDB4000594FA /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D2F51121F6BDB4000594FA /* Main.storyboard */; };
@@ -19,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		903B8BAA21F74C5A00EAB837 /* VideoTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VideoTableViewCell.h; sourceTree = "<group>"; };
+		903B8BAB21F74C5A00EAB837 /* VideoTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VideoTableViewCell.m; sourceTree = "<group>"; };
 		90D2F50821F6BDB4000594FA /* XJPlayerTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = XJPlayerTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		90D2F50B21F6BDB4000594FA /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		90D2F50C21F6BDB4000594FA /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -77,6 +80,8 @@
 				90D2F51621F6BDB5000594FA /* LaunchScreen.storyboard */,
 				90D2F51921F6BDB5000594FA /* Info.plist */,
 				90D2F51A21F6BDB5000594FA /* main.m */,
+				903B8BAA21F74C5A00EAB837 /* VideoTableViewCell.h */,
+				903B8BAB21F74C5A00EAB837 /* VideoTableViewCell.m */,
 			);
 			path = XJPlayerTransition;
 			sourceTree = "<group>";
@@ -164,6 +169,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				903B8BAC21F74C5A00EAB837 /* VideoTableViewCell.m in Sources */,
 				90D2F51021F6BDB4000594FA /* ViewController.m in Sources */,
 				90D2F52721F6D4EA000594FA /* XJPlayerTransitioningDelegate.m in Sources */,
 				90D2F51B21F6BDB5000594FA /* main.m in Sources */,

@@ -30,8 +30,6 @@
     UIView *fromView = [transitionContext viewForKey:UITransitionContextFromViewKey];
     UIView *toView = [transitionContext viewForKey:UITransitionContextToViewKey];
     if (!(fromView || toView || self.sourceView || self.targetView)) return;
-    NSLog(@"dismiss targetView : %@", self.targetView);
-    NSLog(@"dismiss sourceView : %@", self.sourceView);
 
     [fromView layoutIfNeeded];
     [toView layoutIfNeeded];
@@ -96,14 +94,29 @@
 
     UIView *containerView = [transitionContext containerView];
     CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:containerView];
-    NSLog(@"self.targetView : %@",self.targetView );
     [containerView insertSubview:toView belowSubview:fromView];
+    
+    CGAffineTransform transform = fromView.transform;
+    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
+    UIDeviceOrientation deviceOrientationLandscape = UIDeviceOrientationIsLandscape(deviceOrientation) ? deviceOrientation : UIDeviceOrientationLandscapeLeft;
+    switch (deviceOrientationLandscape) {
+        case UIDeviceOrientationLandscapeLeft:
+            //fromView.transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+            
+        case UIDeviceOrientationLandscapeRight:
+            //fromView.transform = CGAffineTransformRotate(transform, -M_PI_2);
+            break;
+        default:
+            break;
+    }
 
+    
     toView.transform = CGAffineTransformIdentity;
     toView.bounds = containerView.bounds;
     toView.center = containerView.center;
     [toView layoutIfNeeded];
-
+    
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
@@ -112,7 +125,8 @@
      {
 
          fromView.transform = CGAffineTransformIdentity;
-         fromView.frame = targetRect;
+         fromView.bounds = targetRect;
+         //fromView.center = self.targetView.center;
          [fromView layoutIfNeeded];
 
 
