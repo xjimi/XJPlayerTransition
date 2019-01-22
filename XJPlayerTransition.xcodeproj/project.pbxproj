@@ -13,6 +13,9 @@
 		90D2F51521F6BDB5000594FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 90D2F51421F6BDB5000594FA /* Assets.xcassets */; };
 		90D2F51821F6BDB5000594FA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90D2F51621F6BDB5000594FA /* LaunchScreen.storyboard */; };
 		90D2F51B21F6BDB5000594FA /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F51A21F6BDB5000594FA /* main.m */; };
+		90D2F52421F6BEE4000594FA /* XJPlayerFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52321F6BEE4000594FA /* XJPlayerFullScreenViewController.m */; };
+		90D2F52721F6D4EA000594FA /* XJPlayerTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52621F6D4EA000594FA /* XJPlayerTransitioningDelegate.m */; };
+		90D2F52A21F6D842000594FA /* XJPlayerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52921F6D842000594FA /* XJPlayerAnimatedTransitioning.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +29,12 @@
 		90D2F51721F6BDB5000594FA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		90D2F51921F6BDB5000594FA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		90D2F51A21F6BDB5000594FA /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		90D2F52221F6BEE4000594FA /* XJPlayerFullScreenViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPlayerFullScreenViewController.h; sourceTree = "<group>"; };
+		90D2F52321F6BEE4000594FA /* XJPlayerFullScreenViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPlayerFullScreenViewController.m; sourceTree = "<group>"; };
+		90D2F52521F6D4EA000594FA /* XJPlayerTransitioningDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPlayerTransitioningDelegate.h; sourceTree = "<group>"; };
+		90D2F52621F6D4EA000594FA /* XJPlayerTransitioningDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPlayerTransitioningDelegate.m; sourceTree = "<group>"; };
+		90D2F52821F6D842000594FA /* XJPlayerAnimatedTransitioning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPlayerAnimatedTransitioning.h; sourceTree = "<group>"; };
+		90D2F52921F6D842000594FA /* XJPlayerAnimatedTransitioning.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPlayerAnimatedTransitioning.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +67,7 @@
 		90D2F50A21F6BDB4000594FA /* XJPlayerTransition */ = {
 			isa = PBXGroup;
 			children = (
+				90D2F52121F6BDBA000594FA /* XJPlayerTransition */,
 				90D2F50B21F6BDB4000594FA /* AppDelegate.h */,
 				90D2F50C21F6BDB4000594FA /* AppDelegate.m */,
 				90D2F50E21F6BDB4000594FA /* ViewController.h */,
@@ -67,6 +77,19 @@
 				90D2F51621F6BDB5000594FA /* LaunchScreen.storyboard */,
 				90D2F51921F6BDB5000594FA /* Info.plist */,
 				90D2F51A21F6BDB5000594FA /* main.m */,
+			);
+			path = XJPlayerTransition;
+			sourceTree = "<group>";
+		};
+		90D2F52121F6BDBA000594FA /* XJPlayerTransition */ = {
+			isa = PBXGroup;
+			children = (
+				90D2F52221F6BEE4000594FA /* XJPlayerFullScreenViewController.h */,
+				90D2F52321F6BEE4000594FA /* XJPlayerFullScreenViewController.m */,
+				90D2F52521F6D4EA000594FA /* XJPlayerTransitioningDelegate.h */,
+				90D2F52621F6D4EA000594FA /* XJPlayerTransitioningDelegate.m */,
+				90D2F52821F6D842000594FA /* XJPlayerAnimatedTransitioning.h */,
+				90D2F52921F6D842000594FA /* XJPlayerAnimatedTransitioning.m */,
 			);
 			path = XJPlayerTransition;
 			sourceTree = "<group>";
@@ -142,7 +165,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				90D2F51021F6BDB4000594FA /* ViewController.m in Sources */,
+				90D2F52721F6D4EA000594FA /* XJPlayerTransitioningDelegate.m in Sources */,
 				90D2F51B21F6BDB5000594FA /* main.m in Sources */,
+				90D2F52A21F6D842000594FA /* XJPlayerAnimatedTransitioning.m in Sources */,
+				90D2F52421F6BEE4000594FA /* XJPlayerFullScreenViewController.m in Sources */,
 				90D2F50D21F6BDB4000594FA /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
