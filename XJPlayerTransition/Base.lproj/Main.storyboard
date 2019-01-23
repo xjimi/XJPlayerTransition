@@ -36,7 +36,7 @@
                                                     <rect key="frame" x="40" y="209.5" width="68" height="30"/>
                                                     <state key="normal" title="fullscreen"/>
                                                     <connections>
-                                                        <action selector="action_fullscreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="keb-xq-AjF"/>
+                                                        <action selector="action_fullscreen:" destination="Rfp-D4-iap" eventType="touchUpInside" id="FDY-Az-hyg"/>
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KU-Tq-Z9n">

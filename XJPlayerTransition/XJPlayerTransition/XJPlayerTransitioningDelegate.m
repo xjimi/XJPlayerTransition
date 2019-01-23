@@ -49,7 +49,7 @@
 }
 
 - (NSTimeInterval)dismissDuration {
-    return 2.3f;
+    return .3f;
 }
 
 

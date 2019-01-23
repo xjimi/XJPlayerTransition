@@ -77,7 +77,7 @@
         /*toView.transform = CGAffineTransformIdentity;
         toView.bounds = containerView.bounds;
         toView.center = containerView.center;*/
-        [transitionContext completeTransition:YES];
+        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
 
     }];
 }
@@ -95,7 +95,7 @@
   //  self.sourceView.transform = toView.transform;
 
     UIView *containerView = [transitionContext containerView];
-    CGRect targetRect = [self.targetView convertRect:self.targetView.frame toView:self.targetView.superview];
+    CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:toView];
 
     [containerView insertSubview:toView belowSubview:fromView];
 
@@ -105,29 +105,22 @@
     toView.bounds = containerView.bounds;
     toView.center = containerView.center;
     [toView layoutIfNeeded];*/
-    CGRect targetFrame = self.targetView.frame;
-    targetFrame.origin.x = targetRect.origin.y;
-    targetFrame.origin.y = targetRect.origin.x;
-    NSLog(@" sourceView : %@", NSStringFromCGRect(targetFrame));
-
+    
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
-                        options:0
+                        options:UIViewAnimationOptionLayoutSubviews
                      animations:^
      {
 
          fromView.transform = CGAffineTransformIdentity;
-         fromView.frame = targetFrame;
-         //fromView.center = targetCenter;
+         fromView.frame = targetRect;
          [fromView layoutIfNeeded];
-
 
      } completion:^(BOOL finished) {
 
          [fromView removeFromSuperview];
-
-         [transitionContext completeTransition:YES];
+         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
 
      }];
 }
