@@ -15,6 +15,11 @@
 
 @implementation XJPlayerTransitioningDelegate
 
+- (void)dealloc
+{
+    NSLog(@"%s", __func__);
+}
+
 - (id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented
                                                                   presentingController:(UIViewController *)presenting
                                                                       sourceController:(UIViewController *)source
@@ -44,7 +49,7 @@
 }
 
 - (NSTimeInterval)dismissDuration {
-    return .3f;
+    return 2.3f;
 }
 
 

@@ -40,7 +40,7 @@
     toView.clipsToBounds = YES;
     toView.bounds = self.sourceView.bounds;
     toView.center = sourceCenter;
-    [toView setNeedsLayout];
+    //[toView setNeedsLayout];
     [toView layoutIfNeeded];
     [containerView addSubview:toView];
 
@@ -63,7 +63,7 @@
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
-                        options:UIViewAnimationOptionLayoutSubviews
+                        options:0
                      animations:^
     {
 
@@ -74,10 +74,10 @@
 
     } completion:^(BOOL finished) {
 
-        toView.transform = CGAffineTransformIdentity;
+        /*toView.transform = CGAffineTransformIdentity;
         toView.bounds = containerView.bounds;
-        toView.center = containerView.center;
-        [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+        toView.center = containerView.center;*/
+        [transitionContext completeTransition:YES];
 
     }];
 }
@@ -92,41 +92,34 @@
     [fromView layoutIfNeeded];
     [toView layoutIfNeeded];
 
-    UIView *containerView = [transitionContext containerView];
-    CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:containerView];
-    [containerView insertSubview:toView belowSubview:fromView];
-    
-    CGAffineTransform transform = fromView.transform;
-    UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
-    UIDeviceOrientation deviceOrientationLandscape = UIDeviceOrientationIsLandscape(deviceOrientation) ? deviceOrientation : UIDeviceOrientationLandscapeLeft;
-    switch (deviceOrientationLandscape) {
-        case UIDeviceOrientationLandscapeLeft:
-            //fromView.transform = CGAffineTransformRotate(transform, -M_PI_2);
-            break;
-            
-        case UIDeviceOrientationLandscapeRight:
-            //fromView.transform = CGAffineTransformRotate(transform, -M_PI_2);
-            break;
-        default:
-            break;
-    }
+  //  self.sourceView.transform = toView.transform;
 
-    
-    toView.transform = CGAffineTransformIdentity;
+    UIView *containerView = [transitionContext containerView];
+    CGRect targetRect = [self.targetView convertRect:self.targetView.frame toView:self.targetView.superview];
+
+    [containerView insertSubview:toView belowSubview:fromView];
+
+    toView.center = containerView.center;
+
+    /*toView.transform = CGAffineTransformIdentity;
     toView.bounds = containerView.bounds;
     toView.center = containerView.center;
-    [toView layoutIfNeeded];
-    
+    [toView layoutIfNeeded];*/
+    CGRect targetFrame = self.targetView.frame;
+    targetFrame.origin.x = targetRect.origin.y;
+    targetFrame.origin.y = targetRect.origin.x;
+    NSLog(@" sourceView : %@", NSStringFromCGRect(targetFrame));
+
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
-                        options:UIViewAnimationOptionLayoutSubviews
+                        options:0
                      animations:^
      {
 
          fromView.transform = CGAffineTransformIdentity;
-         fromView.bounds = targetRect;
-         //fromView.center = self.targetView.center;
+         fromView.frame = targetFrame;
+         //fromView.center = targetCenter;
          [fromView layoutIfNeeded];
 
 
@@ -134,7 +127,7 @@
 
          [fromView removeFromSuperview];
 
-         [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
+         [transitionContext completeTransition:YES];
 
      }];
 }

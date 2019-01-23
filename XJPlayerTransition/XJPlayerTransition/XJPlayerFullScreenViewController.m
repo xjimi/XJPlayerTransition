@@ -61,6 +61,11 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
+    return UIInterfaceOrientationLandscapeLeft;
+}
+ 
+
 - (BOOL)prefersStatusBarHidden {
     return YES;
 }

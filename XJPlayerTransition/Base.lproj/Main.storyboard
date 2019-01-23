@@ -12,7 +12,6 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -31,15 +30,18 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0V-5o-C0S">
                                                     <rect key="frame" x="10" y="10" width="355" height="189.5"/>
-                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYs-wU-Bbt">
-                                                    <rect key="frame" x="40" y="209.5" width="31" height="30"/>
-                                                    <state key="normal" title="详情"/>
+                                                    <rect key="frame" x="40" y="209.5" width="68" height="30"/>
+                                                    <state key="normal" title="fullscreen"/>
+                                                    <connections>
+                                                        <action selector="action_fullscreen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="keb-xq-AjF"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6KU-Tq-Z9n">
-                                                    <rect key="frame" x="304" y="209.5" width="31" height="30"/>
-                                                    <state key="normal" title="全屏"/>
+                                                    <rect key="frame" x="267" y="209.5" width="68" height="30"/>
+                                                    <state key="normal" title="fullscreen"/>
                                                     <connections>
                                                         <action selector="action_fullscreen:" destination="Rfp-D4-iap" eventType="touchUpInside" id="CFl-pq-ckI"/>
                                                     </connections>
@@ -83,6 +85,7 @@
                         <outlet property="tableView" destination="Woe-7J-HLA" id="dIL-Cs-lqg"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
     </scenes>
