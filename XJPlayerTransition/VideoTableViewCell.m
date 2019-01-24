@@ -21,8 +21,8 @@
     // Initialization code
 }
 - (IBAction)action_fullscreen:(id)sender {
-    if ([self.delegate respondsToSelector:@selector(fullscreenWithPlayerView:)]) {
-        [self.delegate fullscreenWithPlayerView:self.playerView];
+    if ([self.delegate respondsToSelector:@selector(fullscreenWithPlayerView:containerView:)]) {
+        [self.delegate fullscreenWithPlayerView:self.playerView.subviews.firstObject containerView:self.playerView];
     }
 }
 

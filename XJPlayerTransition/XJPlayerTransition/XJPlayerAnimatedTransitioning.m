@@ -40,26 +40,28 @@
     toView.clipsToBounds = YES;
     toView.bounds = self.sourceView.bounds;
     toView.center = sourceCenter;
-    //[toView setNeedsLayout];
+    [toView setNeedsLayout];
     [toView layoutIfNeeded];
     [containerView addSubview:toView];
+
+    [toView addSubview:self.playerView];
+    [self fitParentViewWithSubView:self.playerView];
 
     CGAffineTransform transform = toView.transform;
     UIDeviceOrientation deviceOrientation = [[UIDevice currentDevice] orientation];
     UIDeviceOrientation deviceOrientationLandscape = UIDeviceOrientationIsLandscape(deviceOrientation) ? deviceOrientation : UIDeviceOrientationLandscapeLeft;
     switch (deviceOrientationLandscape) {
         case UIDeviceOrientationLandscapeLeft:
-            toView.transform = CGAffineTransformRotate(transform, M_PI_2);
+            toView.transform = CGAffineTransformRotate(transform, -M_PI_2);
             break;
 
         case UIDeviceOrientationLandscapeRight:
-            toView.transform = CGAffineTransformRotate(transform, -M_PI_2);
+            toView.transform = CGAffineTransformRotate(transform, M_PI_2);
             break;
         default:
             break;
     }
 
-    //self.sourceView.alpha = 0.0f;
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
@@ -92,20 +94,17 @@
     [fromView layoutIfNeeded];
     [toView layoutIfNeeded];
 
-  //  self.sourceView.transform = toView.transform;
-
     UIView *containerView = [transitionContext containerView];
     CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:toView];
 
     [containerView insertSubview:toView belowSubview:fromView];
-
     toView.center = containerView.center;
+    toView.transform = CGAffineTransformIdentity;
 
-    /*toView.transform = CGAffineTransformIdentity;
-    toView.bounds = containerView.bounds;
-    toView.center = containerView.center;
-    [toView layoutIfNeeded];*/
-    
+    if ([UIApplication sharedApplication].statusBarFrame.size.height == 40) {
+        targetRect.origin.y += 10.0f;
+    }
+
     NSTimeInterval duration = [self transitionDuration:transitionContext];
     [UIView animateWithDuration:duration
                           delay:0
@@ -119,10 +118,23 @@
 
      } completion:^(BOOL finished) {
 
+         [self.targetView addSubview:self.playerView];
+         [self fitParentViewWithSubView:self.playerView];
+
          [fromView removeFromSuperview];
          [transitionContext completeTransition:!transitionContext.transitionWasCancelled];
 
      }];
+}
+
+- (void)fitParentViewWithSubView:(UIView *)subview
+{
+    subview.translatesAutoresizingMaskIntoConstraints = NO;
+    NSLayoutConstraint *viewTop = [NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeTop relatedBy:NSLayoutRelationEqual toItem:subview.superview attribute:NSLayoutAttributeTop multiplier:1 constant:0];
+    NSLayoutConstraint *viewLeft = [NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeLeft relatedBy:NSLayoutRelationEqual toItem:subview.superview attribute:NSLayoutAttributeLeft multiplier:1 constant:0];
+    NSLayoutConstraint *viewRight = [NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeRight relatedBy:NSLayoutRelationEqual toItem:subview.superview attribute:NSLayoutAttributeRight multiplier:1 constant:0];
+    NSLayoutConstraint *viewBottom = [NSLayoutConstraint constraintWithItem:subview attribute:NSLayoutAttributeBottom relatedBy:NSLayoutRelationEqual toItem:subview.superview attribute:NSLayoutAttributeBottom multiplier:1 constant:0];
+    [subview.superview addConstraints:@[viewTop, viewLeft, viewRight, viewBottom]];
 }
 
 - (void)animateTransition:(nonnull id<UIViewControllerContextTransitioning>)transitionContext

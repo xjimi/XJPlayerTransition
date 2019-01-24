@@ -11,6 +11,7 @@
 
 @interface XJPlayerFullScreenViewController ()
 
+
 @end
 
 @implementation XJPlayerFullScreenViewController
@@ -18,14 +19,42 @@
 - (void)dealloc
 {
     NSLog(@"%s", __func__);
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor purpleColor];
-    //[self.view addSubview:self.playerContainer];
-    //self.playerContainer.frame = self.view.bounds;
+    self.view.backgroundColor = [UIColor blackColor];
+
+    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(deviceOrientationDidChange:)
+                                                 name:UIDeviceOrientationDidChangeNotification
+                                               object:nil];
+}
+
+- (void)deviceOrientationDidChange:(NSNotification *)notification
+{
+    UIDeviceOrientation deviceOrientation = [UIDevice currentDevice].orientation;
+    switch (deviceOrientation)
+    {
+        case UIDeviceOrientationPortrait:
+        {
+            [self dismissViewControllerAnimated:YES completion:nil];
+            break;
+        }
+        default:
+            break;
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+
+    //[self setStatusBarHidden:YES animation:UIStatusBarAnimationSlide];
 }
 
 - (XJPlayerTransitioningDelegate *)transition
@@ -38,6 +67,7 @@
 
     return _transition;
 }
+
 /*
 - (UIView *)playerContainer
 {
@@ -61,17 +91,10 @@
     return UIInterfaceOrientationMaskLandscape;
 }
 
+/*
 - (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation{
     return UIInterfaceOrientationLandscapeLeft;
-}
- 
+}*/
 
-- (BOOL)prefersStatusBarHidden {
-    return YES;
-}
-
-- (BOOL)prefersHomeIndicatorAutoHidden {
-    return YES;
-}
 
 @end

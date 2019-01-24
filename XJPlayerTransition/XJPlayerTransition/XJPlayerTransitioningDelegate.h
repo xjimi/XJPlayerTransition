@@ -14,8 +14,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface XJPlayerTransitioningDelegate : NSObject < UIViewControllerTransitioningDelegate >
 
-@property (nonatomic, weak) UIView *sourceView;
-@property (nonatomic, weak) UIView *targetView;
+@property (nonatomic, strong) UIView *sourceView;
+@property (nonatomic, strong) UIView *targetView;
+@property (nonatomic, strong) UIView *playerView;
+
 
 @property (nonatomic, assign) AVLayerVideoGravity sourceGravity;
 @property (nonatomic, assign) AVLayerVideoGravity targetGravity;

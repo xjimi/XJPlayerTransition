@@ -14,7 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 @protocol VideoTableViewCellDelegate <NSObject>
 
 @optional
-- (void)fullscreenWithPlayerView:(UIView *)playerView;
+- (void)fullscreenWithPlayerView:(UIView *)playerView containerView:(UIView *)containerView;
 
 @end
 

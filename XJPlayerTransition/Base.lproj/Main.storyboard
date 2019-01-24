@@ -9,6 +9,21 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Player Container View Controller-->
+        <scene sceneID="JLo-a9-Xdp">
+            <objects>
+                <viewController id="wxo-uO-7MR" customClass="PlayerContainerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ud-99-bCh">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="CRk-wL-UQ9"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="F5t-kO-PNZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="-695"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -30,7 +45,18 @@
                                             <subviews>
                                                 <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0V-5o-C0S">
                                                     <rect key="frame" x="10" y="10" width="355" height="189.5"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <subviews>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="img" translatesAutoresizingMaskIntoConstraints="NO" id="4fd-n8-0kb">
+                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="189.5"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="trailing" secondItem="4fd-n8-0kb" secondAttribute="trailing" id="1d4-gh-GCW"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4fd-n8-0kb" secondAttribute="bottom" id="C3P-nv-qR8"/>
+                                                        <constraint firstItem="4fd-n8-0kb" firstAttribute="top" secondItem="N0V-5o-C0S" secondAttribute="top" id="J74-sZ-nkr"/>
+                                                        <constraint firstItem="4fd-n8-0kb" firstAttribute="leading" secondItem="N0V-5o-C0S" secondAttribute="leading" id="YRe-ZX-1UO"/>
+                                                    </constraints>
                                                 </view>
                                                 <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYs-wU-Bbt">
                                                     <rect key="frame" x="40" y="209.5" width="68" height="30"/>
@@ -89,4 +115,7 @@
             </objects>
         </scene>
     </scenes>
+    <resources>
+        <image name="img" width="1280" height="720"/>
+    </resources>
 </document>

@@ -17,6 +17,8 @@
 		90D2F52421F6BEE4000594FA /* XJPlayerFullScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52321F6BEE4000594FA /* XJPlayerFullScreenViewController.m */; };
 		90D2F52721F6D4EA000594FA /* XJPlayerTransitioningDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52621F6D4EA000594FA /* XJPlayerTransitioningDelegate.m */; };
 		90D2F52A21F6D842000594FA /* XJPlayerAnimatedTransitioning.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52921F6D842000594FA /* XJPlayerAnimatedTransitioning.m */; };
+		90D2F52D21F99432000594FA /* PlayerContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52C21F99432000594FA /* PlayerContainerViewController.m */; };
+		90D2F53021F99E1E000594FA /* PlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90D2F52F21F99E1E000594FA /* PlayerViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +40,10 @@
 		90D2F52621F6D4EA000594FA /* XJPlayerTransitioningDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPlayerTransitioningDelegate.m; sourceTree = "<group>"; };
 		90D2F52821F6D842000594FA /* XJPlayerAnimatedTransitioning.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XJPlayerAnimatedTransitioning.h; sourceTree = "<group>"; };
 		90D2F52921F6D842000594FA /* XJPlayerAnimatedTransitioning.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XJPlayerAnimatedTransitioning.m; sourceTree = "<group>"; };
+		90D2F52B21F99432000594FA /* PlayerContainerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerContainerViewController.h; sourceTree = "<group>"; };
+		90D2F52C21F99432000594FA /* PlayerContainerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerContainerViewController.m; sourceTree = "<group>"; };
+		90D2F52E21F99E1E000594FA /* PlayerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PlayerViewController.h; sourceTree = "<group>"; };
+		90D2F52F21F99E1E000594FA /* PlayerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PlayerViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +88,10 @@
 				90D2F51A21F6BDB5000594FA /* main.m */,
 				903B8BAA21F74C5A00EAB837 /* VideoTableViewCell.h */,
 				903B8BAB21F74C5A00EAB837 /* VideoTableViewCell.m */,
+				90D2F52B21F99432000594FA /* PlayerContainerViewController.h */,
+				90D2F52C21F99432000594FA /* PlayerContainerViewController.m */,
+				90D2F52E21F99E1E000594FA /* PlayerViewController.h */,
+				90D2F52F21F99E1E000594FA /* PlayerViewController.m */,
 			);
 			path = XJPlayerTransition;
 			sourceTree = "<group>";
@@ -170,12 +180,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				903B8BAC21F74C5A00EAB837 /* VideoTableViewCell.m in Sources */,
+				90D2F52D21F99432000594FA /* PlayerContainerViewController.m in Sources */,
 				90D2F51021F6BDB4000594FA /* ViewController.m in Sources */,
 				90D2F52721F6D4EA000594FA /* XJPlayerTransitioningDelegate.m in Sources */,
 				90D2F51B21F6BDB5000594FA /* main.m in Sources */,
 				90D2F52A21F6D842000594FA /* XJPlayerAnimatedTransitioning.m in Sources */,
 				90D2F52421F6BEE4000594FA /* XJPlayerFullScreenViewController.m in Sources */,
 				90D2F50D21F6BDB4000594FA /* AppDelegate.m in Sources */,
+				90D2F53021F99E1E000594FA /* PlayerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -17,6 +17,11 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (nonatomic, assign) BOOL statusBarHidden;
+@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
+@property (nonatomic, assign) UIStatusBarAnimation statusBarAnimation;
+
+
 @end
 
 @implementation ViewController
@@ -30,6 +35,7 @@
     [super viewWillAppear:animated];
 
     self.view.bounds = [UIScreen mainScreen].bounds;
+    [self setStatusBarHidden:NO animation:UIStatusBarAnimationFade];
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -48,28 +54,34 @@
     return cell;
 }
 
-- (void)fullscreenWithPlayerView:(UIView *)playerView
+- (void)fullscreenWithPlayerView:(UIView *)playerView containerView:(UIView *)containerView
 {
-    XJPlayerFullScreenViewController *vc = [[XJPlayerFullScreenViewController alloc] init];
-    XJPlayerTransitioningDelegate *transition = vc.transition;
-    transition.sourceView = playerView;
-    //transition.sourceGravity = .resizeAspect
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    vc.transitioningDelegate = transition;
-    [self presentViewController:vc animated:YES completion:nil];
+    __weak typeof(self)weakSelf = self;
+    BOOL isInCall = [UIApplication sharedApplication].statusBarFrame.size.height == 40;
+    [self setStatusBarHidden:YES statusBarStyle:self.statusBarStyle animation:UIStatusBarAnimationSlide completion:^(BOOL finished) {
 
+        if (!isInCall) {
+            [weakSelf presentFullScreenWithPlayerView:playerView containerView:containerView];
+        } else {
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                [weakSelf presentFullScreenWithPlayerView:playerView containerView:containerView];
+            });
+        }
+
+    }];
 }
 
-- (IBAction)action_fullscreen:(id)sender
+- (void)presentFullScreenWithPlayerView:(UIView *)playerView containerView:(UIView *)containerView
 {
     XJPlayerFullScreenViewController *vc = [[XJPlayerFullScreenViewController alloc] init];
     XJPlayerTransitioningDelegate *transition = vc.transition;
-    //transition.targetView = vc.playerContainer;
-    transition.sourceView = self.playerView;
+    transition.sourceView = containerView;
+    transition.playerView = playerView;
     //transition.sourceGravity = .resizeAspect
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.transitioningDelegate = transition;
     [self presentViewController:vc animated:YES completion:nil];
+
 }
 
 - (BOOL)shouldAutorotate {
@@ -84,10 +96,40 @@
     return UIInterfaceOrientationPortrait;
 }
 
-- (BOOL)prefersStatusBarHidden {
-    return NO;
+
+- (void)setStatusBarHidden:(BOOL)hidden animation:(UIStatusBarAnimation)animation
+{
+    [self setStatusBarHidden:hidden statusBarStyle:self.statusBarStyle animation:animation completion:nil];
 }
 
+- (void)setStatusBarHidden:(BOOL)hidden
+            statusBarStyle:(UIStatusBarStyle)statusBarStyle
+                 animation:(UIStatusBarAnimation)animation
+                completion:(void (^ __nullable)(BOOL finished))completion
+{
+    self.statusBarStyle = statusBarStyle;
+    self.statusBarHidden = hidden;
+    self.statusBarAnimation = animation;
+
+    [UIView animateWithDuration:.25 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        [self setNeedsStatusBarAppearanceUpdate];
+    } completion:completion];
+}
+
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return self.statusBarStyle;
+}
+
+- (BOOL)prefersStatusBarHidden
+{
+    return self.statusBarHidden;
+}
+
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
+{
+    return self.statusBarAnimation;
+}
 
 
 

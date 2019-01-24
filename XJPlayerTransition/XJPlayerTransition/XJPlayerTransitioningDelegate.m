@@ -27,6 +27,7 @@
     XJPlayerAnimatedTransitioning *transitioning = [XJPlayerAnimatedTransitioning initWithPlayerTransitionType:XJPlayerTransitionTypePresent];
     transitioning.sourceView = self.sourceView;
     transitioning.targetView = self.targetView;
+    transitioning.playerView = self.playerView;
     transitioning.sourceGravity = self.sourceGravity;
     transitioning.targetGravity = self.targetGravity;
     transitioning.duration = self.presentDuration;
@@ -38,6 +39,7 @@
     XJPlayerAnimatedTransitioning *transitioning = [XJPlayerAnimatedTransitioning initWithPlayerTransitionType:XJPlayerTransitionTypeDismiss];
     transitioning.sourceView = self.targetView;
     transitioning.targetView = self.sourceView;
+    transitioning.playerView = self.playerView;
     transitioning.sourceGravity = self.targetGravity;
     transitioning.targetGravity = self.sourceGravity;
     transitioning.duration = self.dismissDuration;

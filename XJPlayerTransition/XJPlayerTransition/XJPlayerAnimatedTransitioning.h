@@ -21,6 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) UIView *sourceView;
 @property (nonatomic, strong) UIView *targetView;
+@property (nonatomic, strong) UIView *playerView;
 
 @property (nonatomic, assign) AVLayerVideoGravity sourceGravity;
 @property (nonatomic, assign) AVLayerVideoGravity targetGravity;
