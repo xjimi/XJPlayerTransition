@@ -17,9 +17,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
-@property (nonatomic, assign) BOOL statusBarHidden;
-@property (nonatomic, assign) UIStatusBarStyle statusBarStyle;
-@property (nonatomic, assign) UIStatusBarAnimation statusBarAnimation;
 
 
 @end
@@ -33,8 +30,12 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-
     self.view.bounds = [UIScreen mainScreen].bounds;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     [self setStatusBarHidden:NO animation:UIStatusBarAnimationFade];
 }
 
@@ -57,16 +58,12 @@
 - (void)fullscreenWithPlayerView:(UIView *)playerView containerView:(UIView *)containerView
 {
     __weak typeof(self)weakSelf = self;
-    BOOL isInCall = [UIApplication sharedApplication].statusBarFrame.size.height == 40;
+    //BOOL isInCall = [UIApplication sharedApplication].statusBarFrame.size.height == 40;
     [self setStatusBarHidden:YES statusBarStyle:self.statusBarStyle animation:UIStatusBarAnimationSlide completion:^(BOOL finished) {
 
-        if (!isInCall) {
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [weakSelf presentFullScreenWithPlayerView:playerView containerView:containerView];
-        } else {
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                [weakSelf presentFullScreenWithPlayerView:playerView containerView:containerView];
-            });
-        }
+        });
 
     }];
 }
@@ -77,25 +74,11 @@
     XJPlayerTransitioningDelegate *transition = vc.transition;
     transition.sourceView = containerView;
     transition.playerView = playerView;
-    //transition.sourceGravity = .resizeAspect
     vc.modalPresentationStyle = UIModalPresentationFullScreen;
     vc.transitioningDelegate = transition;
     [self presentViewController:vc animated:YES completion:nil];
 
 }
-
-- (BOOL)shouldAutorotate {
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return UIInterfaceOrientationMaskPortrait;
-}
-
-- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
-    return UIInterfaceOrientationPortrait;
-}
-
 
 - (void)setStatusBarHidden:(BOOL)hidden animation:(UIStatusBarAnimation)animation
 {
@@ -116,21 +99,29 @@
     } completion:completion];
 }
 
-- (UIStatusBarStyle)preferredStatusBarStyle
-{
+- (UIStatusBarStyle)preferredStatusBarStyle {
     return self.statusBarStyle;
 }
 
-- (BOOL)prefersStatusBarHidden
-{
+- (BOOL)prefersStatusBarHidden {
     return self.statusBarHidden;
 }
 
-- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation
-{
+- (UIStatusBarAnimation)preferredStatusBarUpdateAnimation {
     return self.statusBarAnimation;
 }
 
+- (BOOL)shouldAutorotate {
+    return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskPortrait;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation {
+    return UIInterfaceOrientationPortrait;
+}
 
 
 @end

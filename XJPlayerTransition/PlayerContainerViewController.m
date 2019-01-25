@@ -24,16 +24,6 @@
     [self createPlayerViewController];
 }
 
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    /*
-    CGFloat PortraitW = MIN([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    CGFloat PortraitH = MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height);
-    self.view.bounds = CGRectMake(0, 0, PortraitW, PortraitH);*/
-    //self.view.bounds = [UIScreen mainScreen].bounds;
-}
-
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
@@ -56,15 +46,14 @@
 
 - (void)fullScreenWithPlayerView:(UIView *)playerView containerView:(UIView *)containerView
 {
-    XJPlayerFullScreenViewController *vc = [[XJPlayerFullScreenViewController alloc] init];
-    XJPlayerTransitioningDelegate *transition = vc.transition;
-    transition.sourceView = containerView;
-    transition.playerView = playerView;
-    //transition.sourceGravity = .resizeAspect
-    vc.modalPresentationStyle = UIModalPresentationFullScreen;
-    vc.transitioningDelegate = transition;
-    [self presentViewController:vc animated:YES completion:nil];
-}
+    __weak typeof(self)weakSelf = self;
+    [self setStatusBarHidden:YES statusBarStyle:self.statusBarStyle animation:UIStatusBarAnimationSlide completion:^(BOOL finished) {
 
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [weakSelf presentFullScreenWithPlayerView:playerView containerView:containerView];
+        });
+
+    }];
+}
 
 @end

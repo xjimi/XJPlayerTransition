@@ -23,9 +23,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong) UIView *targetView;
 @property (nonatomic, strong) UIView *playerView;
 
-@property (nonatomic, assign) AVLayerVideoGravity sourceGravity;
-@property (nonatomic, assign) AVLayerVideoGravity targetGravity;
-
 @property (nonatomic, assign) NSTimeInterval duration;
 
 + (instancetype)initWithPlayerTransitionType:(XJPlayerTransitionType)transitionType;

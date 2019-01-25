@@ -15,8 +15,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong) XJPlayerTransitioningDelegate *transition;
 
-@property (nonatomic, strong) UIView *playerContainer;
-
 @end
 
 NS_ASSUME_NONNULL_END

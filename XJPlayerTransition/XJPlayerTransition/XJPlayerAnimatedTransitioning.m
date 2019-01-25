@@ -95,12 +95,10 @@
     [toView layoutIfNeeded];
 
     UIView *containerView = [transitionContext containerView];
-    CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:toView];
-
     [containerView insertSubview:toView belowSubview:fromView];
     toView.center = containerView.center;
-    toView.transform = CGAffineTransformIdentity;
 
+    CGRect targetRect = [self.targetView convertRect:self.targetView.bounds toView:toView];
     if ([UIApplication sharedApplication].statusBarFrame.size.height == 40) {
         targetRect.origin.y += 10.0f;
     }
